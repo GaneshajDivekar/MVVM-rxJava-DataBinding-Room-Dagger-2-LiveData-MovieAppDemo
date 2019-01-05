@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="3dp">
 
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <movieapp.movieappdemo.Utility.CTextView
+        android:id="@+id/movieName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:padding="1dp"
+       android:textStyle="normal"
+        android:text="moviename" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#D3D3D3"
+        />
+</LinearLayout>
 
-            <movieapp.movieappdemo.Utility.CTextView
-                android:text="moviename"
-                android:id="@+id/movieName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-    </data>
-</layout>
 
