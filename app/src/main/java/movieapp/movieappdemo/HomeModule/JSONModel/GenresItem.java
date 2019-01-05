@@ -1,5 +1,7 @@
 package movieapp.movieappdemo.HomeModule.JSONModel;
 
+import android.databinding.Bindable;
+
 import com.google.gson.annotations.SerializedName;
 
 public class GenresItem{

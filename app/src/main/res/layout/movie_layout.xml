@@ -11,13 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
         android:padding="1dp"
-       android:textStyle="normal"
-        android:text="moviename" />
+        android:text=""
+        android:textStyle="normal" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="#D3D3D3"
-        />
+        android:background="#D3D3D3" />
 </LinearLayout>
 
 

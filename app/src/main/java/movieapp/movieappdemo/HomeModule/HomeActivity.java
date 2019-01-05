@@ -16,6 +16,10 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import movieapp.movieappdemo.DI.qualifier.ActivityContext;
+import movieapp.movieappdemo.DI.qualifier.ApplicationContext;
 import movieapp.movieappdemo.HomeModule.Adapter.MovieListAdapter;
 import movieapp.movieappdemo.HomeModule.JSONModel.GenresItem;
 import movieapp.movieappdemo.HomeModule.JSONModel.MovieListHeaderResponse;
@@ -27,31 +31,38 @@ import movieapp.movieappdemo.databinding.ActivityHomeBinding;
 public class HomeActivity extends AppCompatActivity {
 
     ApiService apiService;
-    Context context;
+   // Context context;
     ActivityHomeBinding activityHomeBinding;
     HomeViewModel homeViewModel;
     List<GenresItem> genresItems = new ArrayList<>();
     MovieListAdapter movieListAdapter;
 
+    @Inject
+    @ApplicationContext
+    public Context mContext;
+
+    @Inject
+    @ActivityContext
+    public Context activityContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-        context = this;
         apiService = ApiClient.getClient(getApplicationContext()).create(ApiService.class);
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         showData();
     }
 
     private void showData() {
-        homeViewModel.getResponseModelLiveData(context, apiService).observe(HomeActivity.this, new Observer<MovieListHeaderResponse>() {
+        homeViewModel.getResponseModelLiveData(mContext, apiService).observe(HomeActivity.this, new Observer<MovieListHeaderResponse>() {
             @Override
             public void onChanged(@Nullable MovieListHeaderResponse movieListHeaderResponse) {
                 if (movieListHeaderResponse != null)
                     genresItems = movieListHeaderResponse.getGenres();
-                RecyclerView.LayoutManager instrumentRVLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                RecyclerView.LayoutManager instrumentRVLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
                 activityHomeBinding.rcView.setLayoutManager(instrumentRVLayoutManager);
-                movieListAdapter = new MovieListAdapter(context, genresItems);
+                movieListAdapter = new MovieListAdapter(mContext, genresItems);
                 activityHomeBinding.rcView.setAdapter(movieListAdapter);
 
             }

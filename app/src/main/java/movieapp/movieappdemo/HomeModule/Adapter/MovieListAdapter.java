@@ -1,6 +1,7 @@
 package movieapp.movieappdemo.HomeModule.Adapter;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final GenresItem dataItem = genresItems.get(position);
         holder.movieName.setText(dataItem.getName());
+
     }
 
 
@@ -52,9 +54,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private final CTextView movieName;
+
         private ViewHolder(View itemView) {
             super(itemView);
             movieName = (CTextView) itemView.findViewById(R.id.movieName);
+
         }
     }
 }
